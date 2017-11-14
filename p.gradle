@@ -5,19 +5,19 @@ group = GROUP_ID
 version = DEPLOY_VERSION
 project.archivesBaseName = POM_ARTIFACT_ID
 
-task sourcesJar(type: Jar) {
-    if(PACKAGE_FORMAT.equals('jar') == true){
-        from sourceSets.main.allJava
-    }else{
-        from android.sourceSets.main.java.srcDirs
-    }
-    classifier = 'sources'
-}
-
-artifacts {
-
-    archives sourcesJar
-}
+//task sourcesJar(type: Jar) {
+//    if(PACKAGE_FORMAT.equals('jar') == true){
+//        from sourceSets.main.allJava
+//    }else{
+//        from android.sourceSets.main.java.srcDirs
+//    }
+//    classifier = 'sources'
+//}
+//
+//artifacts {
+//
+//    archives sourcesJar
+//}
 
 def pomConfig = {
     licenses {
