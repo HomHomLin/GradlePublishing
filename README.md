@@ -4,6 +4,14 @@
 
 # 背景
 
+```groovy
+compile 'xxxxx:xxxx:xx'
+```
+
+经常在Android开发中会遇到这个，这个怎么来的呢？
+
+其实这个和iOS的COCOAPODS是差不多性质的东西。
+
 很多时候，我们希望能把本地项目发布到仓库中，让其他人使用。Bintray是一个很好的远程仓库。
 
 网上有很多例子教你如何发布，但是本萌升级到Gradle4.0之后，发现那些例子都不能用了。而且网上无非都是需要借助第三方的插件，比如需要“android-maven-gradle-plugin”外加Bintray的插件等，其实根本不需要什么别的插件，只要Bintray的插件就可以了。
