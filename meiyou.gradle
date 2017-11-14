@@ -29,7 +29,6 @@ def pomConfig = {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
             groupId "com.meiyou"
             artifactId POM_ARTIFACT_ID
             version DEPLOY_VERSION
