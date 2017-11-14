@@ -9,7 +9,7 @@ task sourcesJar(type: Jar) {
     if(PACKAGE_FORMAT.equals('jar') == true){
         from sourceSets.main.allJava
     }else{
-        from android.sourceSets.main.allJava
+        from android.sourceSets.main.java.srcDirs
     }
     classifier = 'sources'
 }
