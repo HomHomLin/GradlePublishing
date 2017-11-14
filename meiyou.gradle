@@ -77,7 +77,7 @@ bintray {
         repo = 'maven'
         name = POM_ARTIFACT_ID
         licenses = ['Apache-2.0']
-        vcsUrl = PROJ_VCSURL
+        vcsUrl = "http://www.meiyou.com/"
         websiteUrl = "http://www.meiyou.com/"
         issueTrackerUrl = "http://www.meiyou.com/"
         publicDownloadNumbers = true
