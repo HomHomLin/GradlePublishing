@@ -1,0 +1,94 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+group = "com.meiyou"
+version = DEPLOY_VERSION
+project.archivesBaseName = POM_ARTIFACT_ID
+
+task sourcesJar(type: Jar) {
+    if(PACKAGE_FORMAT.equals('jar') == true){
+        from sourceSets.main.allJava
+    }else{
+        from android.sourceSets.main.allJava
+    }
+    classifier = 'sources'
+}
+
+artifacts {
+
+    archives sourcesJar
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "meiyouopensource"
+            name "meiyouopensource"
+            email "bintray_opensource@xiaoyouzi.com"
+        }
+    }
+
+    scm {
+        url "http://www.meiyou.com/"
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId "com.meiyou"
+            artifactId POM_ARTIFACT_ID
+            version DEPLOY_VERSION
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('packaging', PACKAGE_FORMAT)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+Properties properties = new Properties()
+InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
+properties.load( inputStream )
+
+def BINTRAY_U = properties.getProperty( 'BINTRAY_USER' )
+def BINTRAY_KEY = properties.getProperty( 'BINTRAY_KEY' ) ;
+
+bintray {
+
+    user = BINTRAY_U
+    key = BINTRAY_KEY
+
+    configurations = ['archives']
+
+    dryRun = false
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = POM_ARTIFACT_ID
+        licenses = ['Apache-2.0']
+        vcsUrl = PROJ_VCSURL
+        websiteUrl = "http://www.meiyou.com/"
+        issueTrackerUrl = "http://www.meiyou.com/"
+        publicDownloadNumbers = true
+        version {
+            name = DEPLOY_VERSION
+            desc = "meiyou opensource"
+            vcsTag = DEPLOY_VERSION
+
+            gpg {
+                sign = true
+            }
+        }
+    }
+}
