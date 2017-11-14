@@ -50,8 +50,6 @@ publishing {
             pom.withXml {
                 def root = asNode()
                 root.appendNode('packaging', PACKAGE_FORMAT)
-//                root.appendNode('name', 'Your name of the lib')
-//                root.appendNode('url', 'https://site_for_lib.tld')
                 root.children().last() + pomConfig
             }
         }
