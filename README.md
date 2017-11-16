@@ -46,10 +46,17 @@ buildscript {
 
 在你需要发布项目中的build.gradle中最下面写上
 
+如果要打JAR请用:
 ```groovy
 apply from: 'https://raw.githubusercontent.com/HomHomLin/GradlePublishing/master/p.gradle'
 ```
 这是来自我github远程仓库的脚本。
+
+如果是打AAR请用：
+
+```groovy
+apply from: 'https://raw.githubusercontent.com/HomHomLin/GradlePublishing/master/android.gradle'
+```
 
 ## Step 3.
 
