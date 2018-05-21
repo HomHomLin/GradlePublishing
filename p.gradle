@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 
 group = GROUP_ID
 version = DEPLOY_VERSION
-project.archivesBaseName = POM_ARTIFACT_ID
+project.archivesBaseName = POM_JAR_ARTIFACT_ID
 
 task sourcesJar(type: Jar) {
     if(PACKAGE_FORMAT.equals('jar') == true){
@@ -45,7 +45,7 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
             groupId GROUP_ID
-            artifactId POM_ARTIFACT_ID
+            artifactId POM_JAR_ARTIFACT_ID
             version DEPLOY_VERSION
             pom.withXml {
                 def root = asNode()
